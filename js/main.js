@@ -6,10 +6,12 @@ window.onload = () => {
 
   // Aqui debemos agregar nuestro fetch
 
-
-
-  /** Codigo que debemos usar para mostrar los datos en el frontend
-    let data = peliculas.data;
+fetch("http://localhost:3031/api/movies")
+  .then((respuesta) => {
+    return respuesta.json()
+  })
+  .then((peliculas) => {
+     let data = peliculas.data;
 
     data.forEach((movie) => {
       const card = document.createElement("div");
@@ -33,6 +35,19 @@ window.onload = () => {
         card.appendChild(genero);
       }
       card.appendChild(duracion);
+      const acciones = document.createElement("p");
+
+      const editar = document.createElement("a");
+      editar.textContent = "editar"; // botonAgregar
+      editar.setAttribute("class", "botonModificar");
+      editar.setAttribute("href", "formulario.html?peliculaId=" + movie.id);
+
+      acciones.appendChild(editar);
+
+      card.appendChild(acciones);
+    
     });
-  */
+  });
+
+// Codigo que debemos usar para mostrar los datos en el frontend
 };
